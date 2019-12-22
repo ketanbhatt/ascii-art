@@ -37,7 +37,7 @@ def generate_ascii_matrix(pixel_matrix)
 end
 
 def print_ascii_matrix(ascii_matrix)
-    ascii_matrix.each_with_index do |row, index|
+    ascii_matrix.each do |row|
         row.each do |char|
             print "#{char}#{char}#{char}"
         end
@@ -54,7 +54,10 @@ def asciify(img_path)
     print_ascii_matrix(ascii_matrix)
 end
 
-# asciify("ascii-pineapple.jpg")
-# asciify("octocat.png")
-# asciify("test-1.jpg")
-asciify("test-2.jpg")
+
+if ARGV.length < 1
+  puts "Pliss specify filepath for the image to be converted"
+  exit
+else
+    asciify(ARGV[0])
+end
