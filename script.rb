@@ -23,14 +23,12 @@ def get_pixel_matrix(image)
 end
 
 def generate_ascii_matrix(pixel_matrix)
-    # brightness_repr_chars = "`^\",:;Il!i~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwqpdbkhao*#MW&8%B@$"
     brightness_repr_chars = ".,:;Il!#&8%@$"
-    # brightness_repr_chars = ['.',',',':',';','+','*','?','%','S','#', '8', '@', '$']
     brightness_repr_chars.reverse!
 
     pixel_matrix.each do |row|
         row.map! do |pixel|
-            bucket = (pixel / (256 / brightness_repr_chars.length.to_f)).ceil
+            bucket = (pixel / (255 / brightness_repr_chars.length.to_f)).floor
             brightness_repr_chars[bucket]
         end
     end
@@ -39,9 +37,9 @@ def generate_ascii_matrix(pixel_matrix)
 end
 
 def print_ascii_matrix(ascii_matrix)
-    for row in ascii_matrix do
-        for col in row do
-            print "#{col}"
+    ascii_matrix.each_with_index do |row, index|
+        row.each do |char|
+            print "#{char}#{char}#{char}"
         end
         puts
     end
@@ -57,4 +55,6 @@ def asciify(img_path)
 end
 
 # asciify("ascii-pineapple.jpg")
-asciify("octocat.png")
+# asciify("octocat.png")
+# asciify("test-1.jpg")
+asciify("test-2.jpg")
