@@ -1,10 +1,14 @@
 require "mini_magick"
 
+$brightness_repr_chars = ".,:;Il!#&8%@$"
+$green_color_code = "\e[32m"
+$no_color_code = "\e[0m"
+
 def load_image(img_path)
     MiniMagick::Image.open(img_path)
 end
 
-def resize_image(image, new_width=100)
+def resize_image(image, new_width=200)
     old_width, old_height = image.dimensions
     aspect_ratio = old_width.to_f / old_height
     new_height = (new_width / aspect_ratio).to_int
@@ -23,13 +27,10 @@ def get_pixel_matrix(image)
 end
 
 def generate_ascii_matrix(pixel_matrix)
-    brightness_repr_chars = ".,:;Il!#&8%@$"
-    brightness_repr_chars.reverse!
-
     pixel_matrix.each do |row|
         row.map! do |pixel|
-            bucket = (pixel / (255 / brightness_repr_chars.length.to_f)).floor
-            brightness_repr_chars[bucket]
+            bucket = (pixel / (255 / $brightness_repr_chars.length.to_f)).floor
+            $brightness_repr_chars[bucket]
         end
     end
 
