@@ -4,7 +4,7 @@ Implementation of the [ASCII Art Project](https://robertheaton.com/2018/06/12/pr
 I am trying to learn Ruby and have fun on the way by following these projects. So, don't learn anything from my code. If you find something good, please know that it was unintentional :D
 
 ## Art
-```ruby
+```
 ruby ascii-art.rb images/harry-potter.jpg
 ```
 
