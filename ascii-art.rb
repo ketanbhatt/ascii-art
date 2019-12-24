@@ -1,8 +1,6 @@
 require "mini_magick"
 
 $brightness_repr_chars = ".,:;Il!#&8%@$"
-$green_color_code = "\e[32m"
-$no_color_code = "\e[0m"
 
 def load_image(img_path)
     MiniMagick::Image.open(img_path)
@@ -62,10 +60,3 @@ if ARGV.length < 1
 else
     asciify(ARGV[0])
 end
-
-# while true
-#     f = IO.popen("imagesnap -w 1 live.jpg")
-#     f.close()
-#     sleep 0.5
-#     asciify("live.jpg")
-# end
